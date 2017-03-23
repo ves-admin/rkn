@@ -62,40 +62,5 @@ def dump(DUMP_FILE_NAME, IP_FILE, URL_FILE, DOM_FILE):
     domfiles.write(domstr.encode('utf-8'))
     domfiles.close()
     
-#    return dom
-
-'''def urltoip(DUMP_FILE_NAME, IP_FILE, URL_FILE, DOM_FILE):
-
-    import gevent
-    from gevent import monkey; monkey.patch_all()
-    import socket
-    
-    hosts = list(dump(DUMP_FILE_NAME, IP_FILE, URL_FILE, DOM_FILE))
-    print('Run urltoip()')
-    ip = set()
-    count = 0
-    noneip = 0
-    while True:
-        if count >= len(hosts):
-            break    
-        elif (len(hosts) - count) < 1000:
-            host = hosts[count:]
-        else:
-            host = hosts[count:count+1000]
-        jobs = [gevent.spawn(socket.gethostbyname, url) for url in host]
-        gevent.joinall(jobs) #, timeout=60
-        for job in jobs:
-            if job.value != None:
-                ip.update([job.value])
-            else:
-                noneip += 1  
-        count += 1001
-    print('Count uniq IP:', len(ip))
-    print("URL's no IP", noneip)
-    ipstr = '\n'.join(ip)
-    ipfiles = open('urltoip', 'wb')
-    ipfiles.write(ipstr.encode('utf-8'))
-    ipfiles.close()'''
-
 dump(args.dump, args.ipfile, args.urlfile, args.domfile)
 
