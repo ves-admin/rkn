@@ -13,7 +13,7 @@ parser.add_argument("-df", "--domfile", action="store", default='dom_file',
 args = parser.parse_args()
 
 
-def domtoip(DOM_FILE, IP_FILE):
+def domtoip(DOM_FILE='dom_file', IP_FILE='ip_file'):
 
     import gevent
     from gevent import monkey; monkey.patch_all()
@@ -68,4 +68,6 @@ def domtoip(DOM_FILE, IP_FILE):
     ipfiles.write(ipstr.encode('utf-8'))
     ipfiles.close()
 
-domtoip(args.domfile, args.ipfile)
+if __name__ == "__main__":
+    domtoip()
+
